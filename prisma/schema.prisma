@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+
+  moduleFormat           = "esm"
+  generatedFileExtension = "mts"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Book {
+  id   BigInt @id @default(autoincrement())
+  isbn String @unique @db.VarChar() // 业务主键
+
+  @@map("t_book")
+}
+
+model AvaliableBook {
+  id       BigInt   @id @default(autoincrement())
+  isbn     String   @unique @db.VarChar()
+  book_ids BigInt[]
+
+  @@map("t_avaliable_book")
+}
+
+model Lend {
+  id               BigInt   @id @default(autoincrement())
+  book_id          BigInt
+  reported_lost    Boolean
+  wait_return      Boolean
+  lend_out_time    DateTime @db.Timestamptz()
+  lend_out_user    BigInt
+  reported_overdue Boolean
+
+  @@map("t_lend")
+}

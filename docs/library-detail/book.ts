@@ -1,4 +1,4 @@
-import { i, d } from './util';
+import { i, d } from './common';
 import {
   管理员,
   会员,

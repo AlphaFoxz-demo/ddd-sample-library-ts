@@ -1,4 +1,4 @@
-import { i, d } from './util';
+import { i, d } from './common';
 
 export const userValues = {
   用户id: i.id('userId'),

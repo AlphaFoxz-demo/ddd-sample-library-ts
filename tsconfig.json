@@ -19,6 +19,14 @@
     "noFallthroughCasesInSwitch": false,
     "types": [
       "vitest/globals"
-    ]
+    ],
+    "paths": {
+      "@app/domain": [
+        "libs/domain/src"
+      ],
+      "@app/domain/*": [
+        "libs/domain/src/*"
+      ]
+    }
   }
 }
